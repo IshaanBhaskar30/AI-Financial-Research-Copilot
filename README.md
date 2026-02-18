@@ -39,9 +39,9 @@ The system integrates LLM reasoning with external data tools and vector embeddin
 
     - Multi-period stock analysis
 
-    - 📄 3. Document Intelligence (RAG)
+### 📄 3. Document Intelligence (RAG)
 
-### Upload PDF documents
+    - Upload PDF documents
 
     - Automatic text chunking & embedding
 
