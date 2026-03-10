@@ -15,7 +15,7 @@ from agno.agent import Agent
 from agno.models.groq import Groq
 from agno.tools.duckduckgo import DuckDuckGoTools
 
-# ---------------------------------------------------
+
 # CONFIG
 # ---------------------------------------------------
 
@@ -27,7 +27,7 @@ st.set_page_config(
 
 st.title("🚀 AI Financial & Research Copilot")
 
-# ---------------------------------------------------
+
 # API KEY INPUT
 # ---------------------------------------------------
 
@@ -39,8 +39,8 @@ if not groq_api_key:
 
 os.environ["GROQ_API_KEY"] = groq_api_key
 
-# ---------------------------------------------------
-# MODEL (Free Tier Optimized)
+
+# MODEL
 # ---------------------------------------------------
 
 model = Groq(
@@ -49,7 +49,7 @@ model = Groq(
     max_tokens=300
 )
 
-# ---------------------------------------------------
+
 # AGENTS
 # ---------------------------------------------------
 
@@ -67,14 +67,14 @@ finance_agent = Agent(
     instructions="Provide short financial insights."
 )
 
-# ---------------------------------------------------
+
 # SESSION MEMORY
 # ---------------------------------------------------
 
 if "chat_history" not in st.session_state:
     st.session_state.chat_history = []
 
-# ---------------------------------------------------
+
 # SIDEBAR
 # ---------------------------------------------------
 
@@ -84,7 +84,7 @@ mode = st.sidebar.radio(
     ["AI Research", "Finance Analysis", "Document Q&A (RAG)"]
 )
 
-# ---------------------------------------------------
+
 # 1️⃣ AI RESEARCH
 # ---------------------------------------------------
 
@@ -103,7 +103,7 @@ if mode == "AI Research":
                 {"role": "assistant", "content": response.content}
             )
 
-# ---------------------------------------------------
+
 # 2️⃣ FINANCE MODE
 # ---------------------------------------------------
 
@@ -142,7 +142,7 @@ elif mode == "Finance Analysis":
                 response = finance_agent.run(summary_prompt)
                 st.write(response.content)
 
-# ---------------------------------------------------
+
 # 3️⃣ RAG DOCUMENT Q&A
 # ---------------------------------------------------
 
@@ -189,9 +189,10 @@ elif mode == "Document Q&A (RAG)":
             response = web_agent.run(rag_prompt)
             st.write(response.content)
 
-# ---------------------------------------------------
+
 # FOOTER
 # ---------------------------------------------------
 
 st.markdown("---")
 st.caption("Built with Groq LLaMA 4 + Streamlit + FAISS + yFinance")
+
